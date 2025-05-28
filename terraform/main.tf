@@ -46,19 +46,4 @@ module "rds" {
   ec2_public_ip      = module.ec2.public_ip
 }
 
-module "ansible" {
-  source            = "./modules/ansible"
-  ec2_public_ip     = module.ec2.public_ip
-  private_key_path  = var.private_key_path
-  ansible_dir       = var.ansible_dir 
-  db_admin_user     = var.db_admin_user
-  db_admin_password = var.db_admin_password
-  wp_db_name        = var.wp_db_name
-  wp_db_user        = var.wp_db_user
-  wp_db_password    = var.wp_db_password
-  wp_site_title     = var.wp_site_title
-  wp_admin_user     = var.wp_admin_user
-  wp_admin_password = var.wp_admin_password
-  wp_admin_email    = var.wp_admin_email
-   rds_endpoint       = module.rds.rds_endpoint  # Pass cleaned RDS endpoint
-}
+
