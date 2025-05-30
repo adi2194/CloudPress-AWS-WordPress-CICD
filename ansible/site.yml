@@ -1,0 +1,11 @@
+---
+- name: Configure EC2 with Apache
+  hosts: ec2  # Matches the group in your inventory file
+  become: true  # Runs tasks as sudo/root
+  roles:
+    - apache
+    - mysql_client
+    - php
+    - wordpress
+
+ 

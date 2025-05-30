@@ -1,0 +1,21 @@
+galaxy_info:
+  author: aditya
+  description: Ansible role to automate WordPress installation and configuration with wp-cli on Amazon Linux 2
+  license: MIT
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: Amazon
+      versions:
+        - 2
+
+  galaxy_tags:
+    - wordpress
+    - apache
+    - wpcli
+    - php
+    - web
+    - cms
+    - automation
+
+dependencies: []

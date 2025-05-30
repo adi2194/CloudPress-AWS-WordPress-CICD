@@ -1,0 +1,20 @@
+galaxy_info:
+  author: jojo
+  description: Ansible role to install MySQL client and configure WordPress database access on Amazon Linux
+  license: MIT
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: Amazon
+      versions:
+        - 2
+
+  galaxy_tags:
+    - mysql
+    - rds
+    - amazon
+    - wordpress
+    - database
+    - client
+
+dependencies: []

@@ -4,3 +4,41 @@ terraform/*.tfstate.*
 terraform/*.tfvars
 terraform/.terraform.lock.hcl
 terraform/crash.log
+# Ignore everything inside ansible/roles by default
+ansible/roles/*
+
+# Unignore apache role directories: handlers, meta, tasks (and contents)
+!ansible/roles/apache/
+ansible/roles/apache/*
+!ansible/roles/apache/handlers/
+!ansible/roles/apache/meta/
+!ansible/roles/apache/tasks/
+!ansible/roles/apache/handlers/**
+!ansible/roles/apache/meta/**
+!ansible/roles/apache/tasks/**
+
+# Unignore mysql_client meta and tasks
+!ansible/roles/mysql_client/
+ansible/roles/mysql_client/*
+!ansible/roles/mysql_client/meta/
+!ansible/roles/mysql_client/tasks/
+!ansible/roles/mysql_client/meta/**
+!ansible/roles/mysql_client/tasks/**
+
+# Unignore php meta and tasks
+!ansible/roles/php/
+ansible/roles/php/*
+!ansible/roles/php/meta/
+!ansible/roles/php/tasks/
+!ansible/roles/php/meta/**
+!ansible/roles/php/tasks/**
+
+# Unignore wordpress meta, templates, tasks
+!ansible/roles/wordpress/
+ansible/roles/wordpress/*
+!ansible/roles/wordpress/meta/
+!ansible/roles/wordpress/templates/
+!ansible/roles/wordpress/tasks/
+!ansible/roles/wordpress/meta/**
+!ansible/roles/wordpress/templates/**
+!ansible/roles/wordpress/tasks/**

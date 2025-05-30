@@ -1,0 +1,12 @@
+---
+- name: Install Apache (httpd) on Amazon Linux 2
+  yum:
+    name: httpd
+    state: present
+
+- name: Start and enable Apache service
+  service:
+    name: httpd
+    state: started
+    enabled: true
+

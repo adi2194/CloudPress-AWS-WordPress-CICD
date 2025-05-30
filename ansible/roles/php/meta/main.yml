@@ -1,0 +1,20 @@
+galaxy_info:
+  author: jojo
+  description: Ansible role to install PHP 7.4 and necessary extensions on Amazon Linux 2 with PHP-FPM enabled
+  license: MIT
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: Amazon
+      versions:
+        - 2
+
+  galaxy_tags:
+    - php
+    - amazon
+    - php-fpm
+    - web
+    - backend
+    - server
+
+dependencies: []

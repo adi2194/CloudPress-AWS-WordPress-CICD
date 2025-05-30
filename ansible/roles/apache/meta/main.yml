@@ -1,0 +1,19 @@
+galaxy_info:
+  author: jojo
+  description: Ansible role to install and configure Apache (httpd) on Amazon Linux 2
+  license: MIT
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: Amazon
+      versions:
+        - 2
+
+  galaxy_tags:
+    - apache
+    - httpd
+    - amazon
+    - web
+    - webserver
+
+dependencies: []

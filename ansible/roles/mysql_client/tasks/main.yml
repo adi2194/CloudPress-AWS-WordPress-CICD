@@ -1,0 +1,27 @@
+---
+- name: Install MySQL Client
+  yum:
+    name: mysql
+    state: present
+
+- name: Export MySQL Host Variable
+  lineinfile:
+    path: ~/.bashrc
+    line: "export MYSQL_HOST={{ mysql_host }}"
+    create: yes
+
+- name: Source ~/.bashrc to apply changes
+  shell: source ~/.bashrc
+  args:
+    executable: /bin/bash
+
+- name: Create WordPress Database and User in RDS
+  shell: >
+    mysql -h {{ mysql_host }} -P 3306 -u {{ wp_db_user }} -p'{{ wp_db_password }}' -e "
+    CREATE DATABASE IF NOT EXISTS \`{{ wp_db_name }}\`;
+    CREATE USER IF NOT EXISTS '{{ wp_db_user }}' IDENTIFIED BY '{{ wp_db_password }}';
+    ALTER USER '{{ wp_db_user }}' IDENTIFIED BY '{{ wp_db_password }}';
+    GRANT ALL PRIVILEGES ON \`{{ wp_db_name }}\`.* TO '{{ wp_db_user }}';
+    FLUSH PRIVILEGES;"
+  when: mysql_host is defined
+

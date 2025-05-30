@@ -1,0 +1,40 @@
+<?php
+/**
+ * The base configuration for WordPress.
+ */
+
+// ** Database settings ** //
+define( 'DB_NAME', '{{ wp_db_name }}' );
+define( 'DB_USER', '{{ wp_db_user }}' );
+define( 'DB_PASSWORD', '{{ wp_db_password }}' );
+define( 'DB_HOST', '{{ mysql_host }}' );
+define( 'DB_CHARSET', 'utf8' );
+define( 'DB_COLLATE', '' );
+
+/**#@+
+ * Authentication unique keys and salts.
+ */
+{{ wp_salt_keys.content }}
+
+/**#@-*/
+
+/**
+ * WordPress database table prefix.
+ */
+$table_prefix = 'wp_';
+
+/**
+ * For developers: WordPress debugging mode.
+ */
+define( 'WP_DEBUG', false );
+
+/* That's all, stop editing! Happy publishing. */
+
+/** Absolute path to the WordPress directory. */
+if ( ! defined( 'ABSPATH' ) ) {
+    define( 'ABSPATH', __DIR__ . '/' );
+}
+
+/** Sets up WordPress vars and included files. */
+require_once ABSPATH . 'wp-settings.php';
+
