@@ -2,12 +2,12 @@
 - name: Download WordPress
   get_url:
     url: https://wordpress.org/latest.tar.gz
-    dest: /home/destination
+    dest: /tmp/wordpress.tar.gz
 
 - name: Extract WordPress
   unarchive:
-    src: /home/destination
-    dest: /home/destination
+    src: /tmp/wordpress.tar.gz
+    dest: /tmp/
     remote_src: yes
 
 - name: Fetch WordPress security keys
@@ -19,13 +19,18 @@
 - name: Generate wp-config.php using Jinja2 template
   template:
     src: wp-config.php.j2
-    dest: /home/destination
+    dest: /tmp/wordpress/wp-config.php
+  vars:
+    wp_salt: "{{ wp_salt_keys.content }}"
 
 - name: Copy WordPress files to /var/www/html
   copy:
-    src: /home/destination
+    src: /tmp/wordpress/
     dest: /var/www/html/
     remote_src: yes
+    owner: apache
+    group: apache
+    mode: '0755'
 
 - name: Download wp-cli
   get_url:
@@ -37,10 +42,11 @@
   file:
     path: "/usr/local/bin/wp"
     mode: '0755'
+    state: file
 
 - name: Run WordPress installation as root
   command: >
-    /usr/local/bin/wp core install 
+    wp core install 
     --url="{{ wp_site_url }}" 
     --title="{{ wp_site_title }}" 
     --admin_user="{{ wp_admin_user }}" 
@@ -48,16 +54,16 @@
     --admin_email="{{ wp_admin_email }}"
   args:
     chdir: "/var/www/html"
-  become: yes  # Running as root to avoid temp directory issues
+  become: yes
 
-- name: Change ownership of WordPress files to Apache
+- name: Ensure ownership of WordPress files
   file:
     path: /var/www/html
     state: directory
     recurse: yes
     owner: apache
     group: apache
-  become: yes  # Restoring ownership after WP installation
+  become: yes
 
 - name: Restart Apache
   service:
