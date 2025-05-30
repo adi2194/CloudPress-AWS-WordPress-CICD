@@ -16,9 +16,9 @@ A fully automated, full-stack WordPress deployment pipeline built for AWS using 
   - Environment and resource parameterization
     
 - Configuration Management with Ansible
-  - Apache, PHP, MySQL client installation
-  - Automated WordPress deployment and configuration
-    
+  - Modular roles to install and configure Apache, PHP, and MySQL client on EC2  
+  - Automated WordPress deployment with setup and tuning of the RDS MySQL database   
+
 - CI/CD Pipeline with Jenkins
   - Fully parameterized pipeline execution
   - Dynamic provisioning based on user-defined inputs
