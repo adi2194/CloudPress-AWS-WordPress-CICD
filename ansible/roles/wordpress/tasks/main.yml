@@ -2,12 +2,12 @@
 - name: Download WordPress
   get_url:
     url: https://wordpress.org/latest.tar.gz
-    dest: /home/ec2-user/latest.tar.gz
+    dest: /home/destination
 
 - name: Extract WordPress
   unarchive:
-    src: /home/ec2-user/latest.tar.gz
-    dest: /home/ec2-user
+    src: /home/destination
+    dest: /home/destination
     remote_src: yes
 
 - name: Fetch WordPress security keys
@@ -19,11 +19,11 @@
 - name: Generate wp-config.php using Jinja2 template
   template:
     src: wp-config.php.j2
-    dest: /home/ec2-user/wordpress/wp-config.php
+    dest: /home/destination
 
 - name: Copy WordPress files to /var/www/html
   copy:
-    src: /home/ec2-user/wordpress/
+    src: /home/destination
     dest: /var/www/html/
     remote_src: yes
 
