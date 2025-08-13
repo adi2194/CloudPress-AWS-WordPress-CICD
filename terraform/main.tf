@@ -47,3 +47,22 @@ module "rds" {
 }
 
 
+resource "aws_s3_bucket" "s3_bucket" {
+  bucket = "aditya-tf-state-file-bucket"
+}
+
+
+resource "aws_dynamodb_table" "terraform_locks" {
+  name         = "terraform-lock"
+  billing_mode = "PAY_PER_REQUEST" # No capacity planning needed
+  hash_key     = "LockID"
+
+  attribute {
+    name = "LockID"
+    type = "S"
+  }
+
+  
+}
+
+
